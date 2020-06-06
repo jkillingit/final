@@ -1,0 +1,12 @@
+<h2>
+    <%= @restaurant[:date] %>
+</h2>
+<h1>Comment on <%= @restaurant[:title] %></h1>
+
+<form action="/restaurants/<%= @restaurant[:id] %>/comments/create" method="POST">
+  <div class="form-group">
+    <label>Comment</label>
+    <textarea class="form-control" rows="3" name="comments"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Post</button>
+</form>
