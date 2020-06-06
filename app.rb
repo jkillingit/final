@@ -16,7 +16,7 @@ after { puts; }                                                                 
 #######################################################################################
 
 restaurants_table = DB.from(:restaurants)
-comments_table = DB.from(:comments)
+posts_table = DB.from(:posts)
 users_table = DB.from(:users)
 
 before do
@@ -37,20 +37,20 @@ get "/restaurants/:id" do
     @users_table = users_table
     # SELECT * FROM restaurants WHERE id=:id
     @restaurant = restaurants_table.where(:id => params["id"]).to_a[0]
-    # SELECT * FROM comments WHERE event_id=:id
-    @comments = comments_table.where(:event_id => params["id"]).to_a
+    # SELECT * FROM posts WHERE restaurant_id=:id
+    @posts = posts_table.where(:restaurant_id => params["id"]).to_a
     view "restaurant"
 end
 
-# Form to create a new comment
-get "/restaurants/:id/comments/new" do
+# Form to create a new post
+get "/restaurants/:id/posts/new" do
     @restaurant = restaurants_table.where(:id => params["id"]).to_a[0]
-    view "new_comment"
+    view "new_post"
 end
 
-# Receiving end of new comment form
-post "/restaurants/:id/comments/create" do
-    comments_table.insert(:restaurant_id => params["id"],
+# Receiving end of new post form
+post "/restaurants/:id/posts/create" do
+    posts_table.insert(:restaurant_id => params["id"],
                        :user_id => @current_user[:id],
                        :comment => params["comment"])
     @restaurant = restaurants_table.where(:id => params["id"]).to_a[0]
