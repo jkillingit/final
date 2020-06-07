@@ -1,5 +1,5 @@
 # final
 
-My project does reviews of takeout restaurants.  It is inspired by all of the takeout I have eaten since the lockdown started.
+My project is a review site of takeout restaurants.  It is inspired by the takeout I have eaten since the lockdown started.
 
-Heroku URL: <INSERT LINK HERE>
+Heroku URL: https://thawing-inlet-20427.herokuapp.com/
