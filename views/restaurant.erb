@@ -20,7 +20,7 @@
             </div>
         <% end %>
         <p class="mt-5">
-            <a href="/events/<%= @event[:id] %>/posts/new" class="btn btn-primary">Tell us if you liked it and comment!</a>
+            <a href="/restaurants/<%= @restaurant[:id] %>/posts/new" class="btn btn-primary">Tell us if you liked it and comment!</a>
         </p>
     </div>
     <div class="col-sm-3">
@@ -28,5 +28,13 @@
         <p><%= @restaurant[:phone] %></p>
         <h3>Where?</h3>
         <p><%= @restaurant[:location] %></p>
+        <iframe
+            width="600"
+            height="450"
+            frameborder="0"
+            zoom="15" 
+            style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw&q=<%= @lat_long %>&zoom=15" allowfullscreen>
+        </iframe>
     </div>
 </div>

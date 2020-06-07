@@ -39,6 +39,9 @@ get "/restaurants/:id" do
     @restaurant = restaurants_table.where(:id => params["id"]).to_a[0]
     # SELECT * FROM posts WHERE restaurant_id=:id
     @posts = posts_table.where(:restaurant_id => params["id"]).to_a
+    # Google Maps
+    results = Geocoder.search(@restaurant[:location])
+    @lat_long = results.first.coordinates.join(",")
     view "restaurant"
 end
 
@@ -51,10 +54,11 @@ end
 # Receiving end of new post form
 post "/restaurants/:id/posts/create" do
     posts_table.insert(:restaurant_id => params["id"],
+                       :like => params["like"],
                        :user_id => @current_user[:id],
-                       :comment => params["comment"])
+                       :comments => params["comments"])
     @restaurant = restaurants_table.where(:id => params["id"]).to_a[0]
-    view "create_comment"
+    view "create_post"
 end
 
 # Form to create a new user
